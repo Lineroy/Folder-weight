@@ -1,4 +1,4 @@
-def how_much_weight_of_directory(final_path):
+def сatalog_weight(final_path):
     # Made so that variables outside the function do not conflict with each other. Presumably.
     from os import walk as os_walk, stat as os_stat, path as os_path, environ as os_environ
     quantity_of_bytes = 0
