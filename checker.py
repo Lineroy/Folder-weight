@@ -1,4 +1,4 @@
-def сatalog_weight(final_path):
+def сatalog_weight(final_path = "C:/Windows/Temp"):
     from os import walk, stat, path
     quantity_of_bytes = 0
 
