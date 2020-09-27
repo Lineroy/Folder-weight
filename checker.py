@@ -1,10 +1,9 @@
 def сatalog_weight(final_path):
-    # Made so that variables outside the function do not conflict with each other. Presumably.
-    from os import walk as os_walk, stat as os_stat, path as os_path, environ as os_environ
+    import os
     quantity_of_bytes = 0
 
     list_with_everything = []
-    for path, no, files in os_walk(final_path):
+    for path, no, files in os.walk(final_path):
         list_with_everything.append([path, files])
 
     while True:
@@ -19,7 +18,7 @@ def сatalog_weight(final_path):
                     pass
 
                 for file in files_arg:
-                    quantity_of_bytes += os_stat(os_path.join(path_arg, file)).st_size
+                    quantity_of_bytes += os.stat(os.path.join(path_arg, file)).st_size
 
         return quantity_of_bytes
     
