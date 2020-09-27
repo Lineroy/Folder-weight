@@ -1,9 +1,9 @@
 def сatalog_weight(final_path):
-    import os
+    from os import walk, stat, path
     quantity_of_bytes = 0
 
     list_with_everything = []
-    for path, no, files in os.walk(final_path):
+    for path, no, files in walk(final_path):
         list_with_everything.append([path, files])
 
     while True:
@@ -18,7 +18,7 @@ def сatalog_weight(final_path):
                     pass
 
                 for file in files_arg:
-                    quantity_of_bytes += os.stat(os.path.join(path_arg, file)).st_size
+                    quantity_of_bytes += stat(path.join(path_arg, file)).st_size
 
         return quantity_of_bytes
     
