@@ -1,25 +1,24 @@
-import os
+def how_much_weight_of_directory(final_path):
+    from os import walk as os_walk, stat as os_stat, path as os_path, environ as os_environ
+    quantity_of_bytes = 0
 
-quantity_of_bytes = 0
+    list_with_everything = []
+    for path, no, files in os_walk(final_path):
+        list_with_everything.append([path, files])
 
-list_with_everything = []
-for path, no, files in os.walk(os.environ["TMP"]):
-    list_with_everything.append([path, files])
+    while True:
+        for step in list_with_everything:
+            path_arg, files_arg = "", []
+            for types in step:
+                if type(types) == str:
+                    path_arg = types
+                    continue
+                else:
+                    files_arg = types
+                    pass
 
-while True:
-    for step in list_with_everything:
-        path_arg, files_arg = "", []
-        for types in step[0]:
-            if type(types) == str:
-                path_arg = types
-                continue
-            else:
-                files_arg = types
-                pass
+                for file in files_arg:
+                    quantity_of_bytes += os_stat(os_path.join(path_arg, file)).st_size
 
-            for file in files_arg:
-                quantity_of_bytes += os.stat(os.path.join(path_arg, file)).st_size
-
-    print(quantity_of_bytes)
+        return quantity_of_bytes
     
-    break
